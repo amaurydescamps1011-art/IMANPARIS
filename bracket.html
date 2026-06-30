@@ -14,7 +14,14 @@
     --slot:#f6f1e3;            /* zone vierge a remplir (cremes) */
     --conn:22px;--gut:46px;--boxw:214px;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  /* impression / export PDF : une seule grande page paysage, couleurs conservees */
+  @page{size:27in 18in;margin:0}
+  @media print{
+    body{padding:24px 26px}
+    .scroll{overflow:visible}
+    .tree{min-height:1180px}
+  }
   body{font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--txt);
     -webkit-font-smoothing:antialiased;
     background:
