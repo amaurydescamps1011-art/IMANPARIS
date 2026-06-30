@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coupe du Monde FIFA 2026 — Bracket des phases finales</title>
+<style>
+  :root{
+    --bg:#0a1f3c;
+    --bg2:#0d2b52;
+    --card:#10325f;
+    --line:#1e4d8c;
+    --gold:#f5c542;
+    --gold2:#e0a92b;
+    --txt:#eaf1fb;
+    --muted:#9bb6d8;
+    --green:#27c46b;
+    --r32:#3aa0ff;
+    --r16:#7c6bff;
+    --qf:#ff7ab8;
+    --sf:#ff9f43;
+    --final:#f5c542;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 600px at 50% -10%,var(--bg2),var(--bg)) fixed;
+    color:var(--txt);
+    padding:28px 16px 60px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1280px;margin:0 auto}
+  header.top{text-align:center;margin-bottom:8px}
+  header.top .kicker{
+    letter-spacing:3px;text-transform:uppercase;color:var(--gold);
+    font-size:13px;font-weight:700;margin-bottom:6px}
+  header.top h1{font-size:clamp(26px,5vw,44px);font-weight:800;line-height:1.05}
+  header.top h1 span{color:var(--gold)}
+  header.top .sub{color:var(--muted);margin-top:10px;font-size:15px}
+  .legend{
+    display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;
+    margin:22px 0 34px;font-size:13px;color:var(--muted)}
+  .legend b{color:var(--txt)}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:middle}
+
+  .round{margin-bottom:40px}
+  .round-head{
+    display:flex;align-items:center;gap:14px;margin:0 0 18px;}
+  .round-head .bar{flex:1;height:2px;background:linear-gradient(90deg,var(--line),transparent)}
+  .round-head h2{
+    font-size:20px;font-weight:800;display:flex;align-items:center;gap:10px;white-space:nowrap}
+  .round-head .count{font-size:13px;color:var(--muted);font-weight:600}
+  .pill{padding:3px 12px;border-radius:999px;font-size:12px;font-weight:800;
+    text-transform:uppercase;letter-spacing:1px;color:#06192f}
+
+  .grid{display:grid;gap:14px}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g1{grid-template-columns:minmax(0,460px);justify-content:center}
+
+  .match{
+    background:linear-gradient(180deg,var(--card),#0e2c54);
+    border:1px solid var(--line);border-radius:14px;padding:12px 13px 11px;
+    position:relative;overflow:hidden}
+  .match::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+  .r32 .match::before{background:var(--r32)}
+  .r16 .match::before{background:var(--r16)}
+  .qf  .match::before{background:var(--qf)}
+  .sf  .match::before{background:var(--sf)}
+  .fin .match::before{background:var(--final)}
+  .tp  .match::before{background:#7f93ad}
+
+  .m-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;gap:8px}
+  .m-no{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.5px}
+  .m-when{font-size:11.5px;font-weight:700;color:var(--gold);text-align:right;line-height:1.35}
+  .m-when small{display:block;color:var(--muted);font-weight:600;font-size:10.5px}
+
+  .team{display:flex;align-items:center;gap:9px;padding:6px 4px;border-radius:8px}
+  .team + .team{margin-top:3px}
+  .team .flag{font-size:19px;width:24px;text-align:center;flex:none}
+  .team .name{flex:1;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .team .score{font-size:14px;font-weight:800;color:var(--muted);min-width:34px;text-align:right}
+  .team.win{background:rgba(39,196,107,.13)}
+  .team.win .name{color:#bff7d6}
+  .team.win .score{color:var(--green)}
+  .team.win .name::after{content:" ✓";color:var(--green);font-weight:800}
+  .team.tbd .name{color:var(--muted);font-weight:600;font-style:italic}
+  .team.tbd .flag{opacity:.4}
+  .vs{height:1px;background:var(--line);margin:2px 6px}
+
+  .m-venue{margin-top:9px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+  .m-venue::before{content:"📍";font-size:11px}
+
+  footer{margin-top:40px;text-align:center;color:var(--muted);font-size:12px;line-height:1.7}
+  footer b{color:var(--txt)}
+
+  @media(max-width:1000px){.g4{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){
+    .g4,.g2{grid-template-columns:1fr}
+    .g1{grid-template-columns:1fr}
+    body{padding:18px 10px 50px}
+  }
+  @media print{
+    body{background:#fff;color:#111}
+    .match{background:#fff;border:1px solid #bbb}
+    .m-when{color:#a8761a}
+    header.top h1 span,header.top .kicker{color:#a8761a}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">🏆 FIFA World Cup 2026 · Canada · Mexique · USA</div>
+    <h1>Phases finales — <span>Tableau & Horaires</span></h1>
+    <div class="sub">Du 28 juin au 19 juillet 2026 · 32 matchs à élimination directe · Heures locales du stade <b>et</b> heure de Paris (CEST)</div>
+  </header>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--r32)"></span>8<sup>es</sup> de finale (1/16)</span>
+    <span><span class="dot" style="background:var(--r16)"></span>8<sup>es</sup> (1/8)</span>
+    <span><span class="dot" style="background:var(--qf)"></span>Quarts</span>
+    <span><span class="dot" style="background:var(--sf)"></span>Demi-finales</span>
+    <span><span class="dot" style="background:var(--final)"></span>Finale</span>
+    <span>✓ = qualifié · <b>HF</b> = heure française</span>
+  </div>
+
+  <div id="app"></div>
+
+  <footer>
+    <b>Source des horaires :</b> calendrier officiel FIFA / Wikipédia (2026 FIFA World Cup knockout stage).<br>
+    Heure de Paris = CEST (UTC+2). Les affiches « Vainqueur M.. » se préciseront au fil des résultats.<br>
+    Visuel généré le 30/06/2026 — IMANPARIS.
+  </footer>
+</div>
+
+<script>
+/* ---- Données : n° de match, jour, heure locale, heure de Paris, stade, ville, équipes ---- */
+const F={ZA:"🇿🇦",CA:"🇨🇦",DE:"🇩🇪",PY:"🇵🇾",NL:"🇳🇱",MA:"🇲🇦",BR:"🇧🇷",JP:"🇯🇵",
+FR:"🇫🇷",SE:"🇸🇪",CI:"🇨🇮",NO:"🇳🇴",MX:"🇲🇽",EC:"🇪🇨",EN:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",CD:"🇨🇩",US:"🇺🇸",BA:"🇧🇦",
+BE:"🇧🇪",SN:"🇸🇳",PT:"🇵🇹",HR:"🇭🇷",ES:"🇪🇸",AT:"🇦🇹",CH:"🇨🇭",DZ:"🇩🇿",AR:"🇦🇷",
+CV:"🇨🇻",AU:"🇦🇺",EG:"🇪🇬",CO:"🇨🇴",GH:"🇬🇭",TBD:"⚽"};
+
+// helper team object
+const t=(f,n,sc=null,win=false,tbd=false)=>({f,n,sc,win,tbd});
+const W=(n)=>t(F.TBD,"Vainqueur M"+n,null,false,true);
+const L=(n)=>t(F.TBD,"Perdant M"+n,null,false,true);
+
+const ROUNDS=[
+ {key:"r32",cls:"r32",color:"var(--r32)",title:"8ᵉˢ de finale · Round of 32",count:"16 matchs · 28 juin → 3 juillet",grid:"g4",matches:[
+   {no:73,day:"Dim 28 juin",loc:"12:00 (PT)",hf:"21:00",venue:"SoFi Stadium",city:"Inglewood",a:t(F.ZA,"Afrique du Sud","0"),b:t(F.CA,"Canada","1",true)},
+   {no:76,day:"Lun 29 juin",loc:"12:00 (ET)",hf:"19:00",venue:"NRG Stadium",city:"Houston",a:t(F.BR,"Brésil","2",true),b:t(F.JP,"Japon","1")},
+   {no:74,day:"Lun 29 juin",loc:"16:30 (ET)",hf:"22:30",venue:"Gillette Stadium",city:"Foxborough",a:t(F.DE,"Allemagne","1 (3)"),b:t(F.PY,"Paraguay","1 (4)",true)},
+   {no:75,day:"Lun 29 juin",loc:"19:00 (CT)",hf:"03:00 +1",venue:"Estadio BBVA",city:"Guadalupe (MEX)",a:t(F.NL,"Pays-Bas","1 (2)"),b:t(F.MA,"Maroc","1 (3)",true)},
+   {no:78,day:"Mar 30 juin",loc:"12:00 (CT)",hf:"19:00",venue:"AT&T Stadium",city:"Arlington",a:t(F.CI,"Côte d'Ivoire","1"),b:t(F.NO,"Norvège","2",true)},
+   {no:77,day:"Mar 30 juin",loc:"17:00 (ET)",hf:"23:00",venue:"MetLife Stadium",city:"East Rutherford",a:t(F.FR,"France"),b:t(F.SE,"Suède")},
+   {no:79,day:"Mar 30 juin",loc:"19:00 (CT)",hf:"03:00 +1",venue:"Estadio Azteca",city:"Mexico",a:t(F.MX,"Mexique"),b:t(F.EC,"Équateur")},
+   {no:80,day:"Mer 1 juil",loc:"12:00 (ET)",hf:"18:00",venue:"Mercedes-Benz Stadium",city:"Atlanta",a:t(F.EN,"Angleterre"),b:t(F.CD,"RD Congo")},
+   {no:82,day:"Mer 1 juil",loc:"13:00 (PT)",hf:"22:00",venue:"Lumen Field",city:"Seattle",a:t(F.BE,"Belgique"),b:t(F.SN,"Sénégal")},
+   {no:81,day:"Mer 1 juil",loc:"17:00 (PT)",hf:"02:00 +1",venue:"Levi's Stadium",city:"Santa Clara",a:t(F.US,"États-Unis"),b:t(F.BA,"Bosnie-Herz.")},
+   {no:84,day:"Jeu 2 juil",loc:"12:00 (PT)",hf:"21:00",venue:"SoFi Stadium",city:"Inglewood",a:t(F.ES,"Espagne"),b:t(F.AT,"Autriche")},
+   {no:83,day:"Jeu 2 juil",loc:"19:00 (ET)",hf:"01:00 +1",venue:"BMO Field",city:"Toronto",a:t(F.PT,"Portugal"),b:t(F.HR,"Croatie")},
+   {no:85,day:"Jeu 2 juil",loc:"20:00 (PT)",hf:"05:00 +1",venue:"BC Place",city:"Vancouver",a:t(F.CH,"Suisse"),b:t(F.DZ,"Algérie")},
+   {no:88,day:"Ven 3 juil",loc:"13:00 (CT)",hf:"20:00",venue:"AT&T Stadium",city:"Arlington",a:t(F.AU,"Australie"),b:t(F.EG,"Égypte")},
+   {no:86,day:"Ven 3 juil",loc:"18:00 (ET)",hf:"00:00 +1",venue:"Hard Rock Stadium",city:"Miami Gardens",a:t(F.AR,"Argentine"),b:t(F.CV,"Cap-Vert")},
+   {no:87,day:"Ven 3 juil",loc:"20:30 (CT)",hf:"03:30 +1",venue:"Arrowhead Stadium",city:"Kansas City",a:t(F.CO,"Colombie"),b:t(F.GH,"Ghana")},
+ ]},
+ {key:"r16",cls:"r16",color:"var(--r16)",title:"Huitièmes de finale · Round of 16",count:"8 matchs · 4 → 7 juillet",grid:"g4",matches:[
+   {no:90,day:"Sam 4 juil",loc:"12:00 (CT)",hf:"19:00",venue:"NRG Stadium",city:"Houston",a:t(F.CA,"Canada"),b:t(F.MA,"Maroc")},
+   {no:89,day:"Sam 4 juil",loc:"17:00 (ET)",hf:"23:00",venue:"Lincoln Financial Field",city:"Philadelphie",a:t(F.PY,"Paraguay"),b:W(77)},
+   {no:91,day:"Dim 5 juil",loc:"16:00 (ET)",hf:"22:00",venue:"MetLife Stadium",city:"East Rutherford",a:t(F.BR,"Brésil"),b:t(F.NO,"Norvège")},
+   {no:92,day:"Dim 5 juil",loc:"18:00 (CT)",hf:"02:00 +1",venue:"Estadio Azteca",city:"Mexico",a:W(79),b:W(80)},
+   {no:93,day:"Lun 6 juil",loc:"14:00 (CT)",hf:"21:00",venue:"AT&T Stadium",city:"Arlington",a:W(83),b:W(84)},
+   {no:94,day:"Lun 6 juil",loc:"17:00 (PT)",hf:"02:00 +1",venue:"Lumen Field",city:"Seattle",a:W(81),b:W(82)},
+   {no:95,day:"Mar 7 juil",loc:"12:00 (ET)",hf:"18:00",venue:"Mercedes-Benz Stadium",city:"Atlanta",a:W(86),b:W(88)},
+   {no:96,day:"Mar 7 juil",loc:"13:00 (PT)",hf:"22:00",venue:"BC Place",city:"Vancouver",a:W(85),b:W(87)},
+ ]},
+ {key:"qf",cls:"qf",color:"var(--qf)",title:"Quarts de finale",count:"4 matchs · 9 → 11 juillet",grid:"g4",matches:[
+   {no:97,day:"Jeu 9 juil",loc:"16:00 (ET)",hf:"22:00",venue:"Gillette Stadium",city:"Foxborough",a:W(89),b:W(90)},
+   {no:98,day:"Ven 10 juil",loc:"12:00 (PT)",hf:"21:00",venue:"SoFi Stadium",city:"Inglewood",a:W(93),b:W(94)},
+   {no:99,day:"Sam 11 juil",loc:"17:00 (ET)",hf:"23:00",venue:"Hard Rock Stadium",city:"Miami Gardens",a:W(91),b:W(92)},
+   {no:100,day:"Sam 11 juil",loc:"20:00 (CT)",hf:"03:00 +1",venue:"Arrowhead Stadium",city:"Kansas City",a:W(95),b:W(96)},
+ ]},
+ {key:"sf",cls:"sf",color:"var(--sf)",title:"Demi-finales",count:"2 matchs · 14 & 15 juillet",grid:"g2",matches:[
+   {no:101,day:"Mar 14 juil",loc:"14:00 (CT)",hf:"21:00",venue:"AT&T Stadium",city:"Arlington",a:W(97),b:W(98)},
+   {no:102,day:"Mer 15 juil",loc:"15:00 (ET)",hf:"21:00",venue:"Mercedes-Benz Stadium",city:"Atlanta",a:W(99),b:W(100)},
+ ]},
+ {key:"tp",cls:"tp",color:"#7f93ad",title:"Match pour la 3ᵉ place",count:"1 match · 18 juillet",grid:"g1",matches:[
+   {no:103,day:"Sam 18 juil",loc:"17:00 (ET)",hf:"23:00",venue:"Hard Rock Stadium",city:"Miami Gardens",a:L(101),b:L(102)},
+ ]},
+ {key:"fin",cls:"fin",color:"var(--final)",title:"🏆 FINALE",count:"1 match · 19 juillet",grid:"g1",matches:[
+   {no:104,day:"Dim 19 juil",loc:"15:00 (ET)",hf:"21:00",venue:"MetLife Stadium",city:"East Rutherford",a:W(101),b:W(102)},
+ ]},
+];
+
+function teamRow(x){
+  const cls=x.win?"team win":(x.tbd?"team tbd":"team");
+  const sc=x.sc!=null?`<span class="score">${x.sc}</span>`:`<span class="score"></span>`;
+  return `<div class="${cls}"><span class="flag">${x.f}</span><span class="name">${x.n}</span>${sc}</div>`;
+}
+function matchCard(m){
+  return `<div class="match">
+    <div class="m-top">
+      <span class="m-no">MATCH ${m.no}</span>
+      <span class="m-when">${m.day} · ${m.loc}<small>🇫🇷 HF ${m.hf}</small></span>
+    </div>
+    ${teamRow(m.a)}
+    <div class="vs"></div>
+    ${teamRow(m.b)}
+    <div class="m-venue">${m.venue} — ${m.city}</div>
+  </div>`;
+}
+function roundBlock(r){
+  return `<section class="round ${r.cls}">
+    <div class="round-head">
+      <h2><span class="pill" style="background:${r.color}">${r.matches.length}</span>${r.title}</h2>
+      <span class="count">${r.count}</span>
+      <span class="bar"></span>
+    </div>
+    <div class="grid ${r.grid}">${r.matches.map(matchCard).join("")}</div>
+  </section>`;
+}
+document.getElementById("app").innerHTML=ROUNDS.map(roundBlock).join("");
+</script>
+</body>
+</html>
